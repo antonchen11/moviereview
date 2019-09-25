@@ -1,0 +1,5 @@
+#Notes for this app
+- everything is an app. Blog, movies, etc
+
+1. Create an app called movies
+- python manage.py startapp movies
