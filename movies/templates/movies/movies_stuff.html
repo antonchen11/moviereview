@@ -1,1 +1,18 @@
-<h1>Hello World!</h1>
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <body>
+
+    <!-- Take info from user input -->
+    <form action="" name="search">
+      <input type="text" name="query">
+      <input type="submit" value="Search">
+    </form>
+
+    <!-- django templating language that starts for-->
+    {% for movie in search_result %}
+      <p>{{ movie.fields.Name}}</p>
+      <img src="{{ movie.fields.Pictures.0.url }}" alt="">
+    {% endfor %}
+    
+  </body>
+</html>
