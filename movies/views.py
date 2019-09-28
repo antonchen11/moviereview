@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.contrib import messages
 from airtable import Airtable #google spreadsheet on steroids
 import os # using for environment vars
@@ -20,5 +20,7 @@ def home_page(request):
     
     # Connect the above path under urls.py
     
-    
-
+#function that takes information from create form and push to back end.    
+def create(request):  
+    print('haha')
+    return redirect('/')
