@@ -22,5 +22,12 @@ def home_page(request):
     
 #function that takes information from create form and push to back end.    
 def create(request):  
-    print('haha')
+    if request.method == 'POST':
+        data = {
+            'Name': request.POST.get('name'),
+            'Pictures': [{'url': request.POST.get('url') }],
+            'Rating': int(request.POST.get('rating')),
+            'Notes': request.POST.get('notes'),            
+        }
+        AT.insert(data)
     return redirect('/')
