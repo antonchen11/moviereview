@@ -31,3 +31,10 @@ def create(request):
         }
         AT.insert(data)
     return redirect('/')
+
+# def edit(request):
+#     if request.method == 'POST':
+#         data = {
+# 
+#         }
+#         AT.edit(data)
