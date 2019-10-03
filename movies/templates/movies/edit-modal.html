@@ -12,7 +12,7 @@
           
           <div class="form-group">
             <label for="editName">Name</label>
-            <input type="text" class="form-control" id="editName" placeholder="Enter name" name="name" value="{{ movie.fields.Name }}">
+            <input type="text" class="form-control" id="editName" placeholder="Enter name" name="name" value="{{ movie.fields.Name }}" required>
           </div>
           <div class="form-group">
             <label for="editURL">Image URL</label>
@@ -20,7 +20,7 @@
           </div>
           <div class="form-group">
             <label for="editRating">Rating</label>
-            <input type="number" class="form-control" id="editRating" placeholder="1-10" name="rating" value="{{ movie.fields.Rating }}">
+            <input type="number" class="form-control" id="editRating" placeholder="1-10" name="rating" value="{{ movie.fields.Rating }}" required>
           </div>
           
           <div class="form-group">
