@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from django.contrib import messages
+from django.contrib import messages # FOR NOTIFICATIONS YO!
 from airtable import Airtable #google spreadsheet on steroids
 import os # using for environment vars
 
@@ -31,7 +31,12 @@ def create(request):
             'Rating': int(request.POST.get('rating')),
             'Notes': request.POST.get('notes'),            
         }
-        AT.insert(data)
+        
+        response = AT.insert(data)
+        
+        #notify on create
+        messages.success(request, 'New Movie Added: {}'.format(response['fields'].get('Name')))
+        
     return redirect('/')
 
 def edit(request, movie_id):
@@ -42,9 +47,21 @@ def edit(request, movie_id):
             'Rating': int(request.POST.get('rating')),
             'Notes': request.POST.get('notes'),
         }
-        AT.update(movie_id, data)
+        response = AT.update(movie_id, data)
+        #notify on updaate
+        messages.success(request, 'New Movie Updated: {}'.format(response['fields'].get('Name')))
+
+        
     return redirect('/')
     
 def delete(request, movie_id):
+    movie_name = AT.get(movie_id)['fields'].get('Name')
     AT.delete(movie_id)
+    #notify on delete
+    messages.warning(request, 'Deleted movie: {}'.format(movie_name))
     return redirect('/')
+    
+#notify ppl when they create,edit or delete a movie
+
+
+    
