@@ -16,6 +16,8 @@ def home_page(request):
     user_query = str(request.GET.get('query', '')) #Get method and pull from html text box of query
     search_result = AT.get_all(formula="FIND('" + user_query.lower() + "', LOWER({Name}))")
     stuff_for_frontend = {'search_result': search_result} #context dictionary of K:V
+    # print(search_result)
+    # print(stuff_for_frontend)
     return render(request, 'movies/movies_stuff.html', stuff_for_frontend)
     
     # Connect the above path under urls.py
@@ -32,9 +34,13 @@ def create(request):
         AT.insert(data)
     return redirect('/')
 
-# def edit(request):
-#     if request.method == 'POST':
-#         data = {
-# 
-#         }
-#         AT.edit(data)
+def edit(request, movie_id):
+    if request.method == 'POST':
+        data = {
+            'Name': request.POST.get('name'),
+            'Pictures': [{'url': request.POST.get('url') }],
+            'Rating': int(request.POST.get('rating')),
+            'Notes': request.POST.get('notes'),
+        }
+        AT.update(movie_id, data)
+    return redirect('/')
